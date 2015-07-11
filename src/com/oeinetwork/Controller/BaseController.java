@@ -1,5 +1,7 @@
 package com.oeinetwork.Controller;
 
+import com.oeinetwork.Models.VerifyModel;
+import com.oeinetwork.Views.ErrorView;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
@@ -15,9 +17,9 @@ public class BaseController implements Controller {
 
     @Override
     public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-        if (verifyWork(request)) {
-            return null;
+        VerifyModel model = work.getVerifyInfo(request);
+        if (!model.verify()) {
+            return new ModelAndView(new ErrorView(), model.getErrors());
         } else {
             if (work != null) {
                 return work.executeJob(request);
@@ -28,20 +30,16 @@ public class BaseController implements Controller {
 
     }
 
-    public interface DoWork {
-        ModelAndView executeJob(HttpServletRequest request);
-    }
-
     public void assignWork(DoWork input) {
         this.work = input;
     }
 
-    private boolean verifyWork(HttpServletRequest request) {
-        /**
-         * verify works here
-         */
-        return false;
+    public interface DoWork {
+        ModelAndView executeJob(HttpServletRequest request);
+
+        VerifyModel getVerifyInfo(HttpServletRequest request);
     }
+
 }
 
 

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/LittleServer.iml" filepath="$PROJECT_DIR$/LittleServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OEIWebServer.iml" filepath="$PROJECT_DIR$/OEIWebServer.iml" />
     </modules>
   </component>
 </project>

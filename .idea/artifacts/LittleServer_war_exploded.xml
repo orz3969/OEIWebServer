@@ -2,10 +2,10 @@
   <artifact type="exploded-war" name="LittleServer:war exploded">
     <output-path>$PROJECT_DIR$/out/artifacts/LittleServer_war_exploded</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="LittleServer/web/Web" />
+      <element id="javaee-facet-resources" facet="OEIWebServer/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="LittleServer" />
+          <element id="module-output" name="OEIWebServer" />
         </element>
         <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/applicationContext.xml" />
         <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/dispatcher-servlet.xml" />
