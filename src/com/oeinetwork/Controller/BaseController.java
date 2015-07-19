@@ -1,5 +1,7 @@
 package com.oeinetwork.Controller;
 
+import com.oeinetwork.Database.DatabaseHelper;
+import com.oeinetwork.HibernateService;
 import com.oeinetwork.Models.VerifyModel;
 import com.oeinetwork.Views.ErrorView;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,21 +16,26 @@ import javax.servlet.http.HttpServletResponse;
 public class BaseController implements Controller {
     private DoWork work;
 
-
     @Override
     public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        System.out.println(request.getParameter("validation_code"));
         VerifyModel model = work.getVerifyInfo(request);
-        if (!model.verify()) {
-            return new ModelAndView(new ErrorView(), model.getErrors());
-        } else {
-            if (work != null) {
+        if(model!=null){
+            if(!model.verify()){
+                return new ModelAndView(new ErrorView(), model.getErrors());
+            }else{
                 return work.executeJob(request);
-            } else {
-                throw new Exception("WorkNotAssignedException");
+            }
+        }else{
+            if(work!=null){
+                return work.executeJob(request);
+            }else{
+                return new ModelAndView(new ErrorView(),null);
             }
         }
-
     }
+
+
 
     public void assignWork(DoWork input) {
         this.work = input;
