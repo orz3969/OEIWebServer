@@ -1,7 +1,5 @@
 package com.oeinetwork.Controller;
 
-import com.oeinetwork.Database.DatabaseHelper;
-import com.oeinetwork.HibernateService;
 import com.oeinetwork.Models.VerifyModel;
 import com.oeinetwork.Views.ErrorView;
 import org.springframework.web.servlet.ModelAndView;
@@ -18,7 +16,6 @@ public class BaseController implements Controller {
 
     @Override
     public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        System.out.println(request.getParameter("validation_code"));
         VerifyModel model = work.getVerifyInfo(request);
         if(model!=null){
             if(!model.verify()){

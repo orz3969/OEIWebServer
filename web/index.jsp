@@ -7,8 +7,7 @@
 <link href="css/index_style.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/bootstrap-theme.css">
-<script src="js/jquery-2.1.4.js"></script>
-<script src="js/bootstrap.js"></script>
+
 
 <body>
 <div class="center-block" id="logo_area"> <img src="img/logo.png" class="img-responsive" alt="Team Logo"> </div>
@@ -18,5 +17,7 @@
     </p>
     <p>All rights reserved</p>
 </div>
+<script src="js/jquery-2.1.4.js"></script>
+<script src="js/bootstrap.js"></script>
 </body>
 </html>

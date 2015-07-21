@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
     <bean name="/AdviceForm.jsp/advice.action" class="com.oeinetwork.Controller.AdviceController"/>
     <bean name="/shit.action" class="com.oeinetwork.Controller.SimpleController"/>
     <!--<bean name="/asshole" class="com.oeinetwork.Controller.DefaultController"/>-->
     <bean name="/yoo" class="com.oeinetwork.Controller.DefaultController"/>
+    <bean name="/ApplyForm.jsp/apply.action" class="com.oeinetwork.Controller.ApplyController"/>
+    <bean name="/Admin.jsp/save.action" class="com.oeinetwork.Controller.SaveFormsController"/>
 </beans>

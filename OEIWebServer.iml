@@ -38,5 +38,7 @@
     <orderEntry type="library" name="Spring MVC-4.1.6.RELEASE" level="project" />
     <orderEntry type="library" name="servlet-api" level="project" />
     <orderEntry type="library" name="mysql-connector-java-5.1.35-bin" level="project" />
+    <orderEntry type="library" name="poi-3.12-20150511" level="project" />
+    <orderEntry type="library" name="commons-compress-1.9" level="project" />
   </component>
 </module>

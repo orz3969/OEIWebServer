@@ -1,9 +1,8 @@
-package com.oeinetwork.Utils;
+package com.oeinetwork.Verify;
 
 import com.oeinetwork.Models.VerifyModel;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
 
 /**
  * Created by orz on 7/11/15

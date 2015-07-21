@@ -11,8 +11,7 @@
 <link href="css/bootstrap.css" rel="stylesheet">
 <link href="css/bootstrap-theme.css" rel="stylesheet">
 <link href="css/submit_sheet.css" rel="stylesheet" type="text/css">
-<script src="js/jquery-2.1.4.js"></script>
-<script src="js/bootstrap.js"></script>
+
 <head>
     <title>ApplyForm</title>
 </head>
@@ -26,12 +25,13 @@
     </div>
 </div>
 <div class="center-block" id="form_area">
-    <form id="voice" name="voicePage" method="post" action="fuck.action" class="form-horizontal">
+    <form id="apply" name="applyPage" method="post"
+          action="${pageContext.request.contextPath}/ApplyForm.jsp/apply.action" class="form-horizontal">
         <div class="form-group">
             <label for="inputOne" class="col-sm-2 control-label">Name</label>
 
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputOne">
+                <input type="text" class="form-control" id="inputOne" name="name">
             </div>
         </div>
         <div class="form-group">
@@ -124,11 +124,23 @@
             </div>
         </div>
         <div class="form-group">
+            <label for="validation" class="col-sm-2 control-label">RandomCode</label>
+
+            <div class="col-sm-2 center-block" id="validation">
+                <img class="img-responsive" src="randcode" id="rc" onclick="changeCode()" title="Show another"/>
+            </div>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="validation_input" name="validation_code">
+            </div>
+        </div>
+        <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <input type="submit" value="Submit" class="btn btn-primary">
             </div>
         </div>
     </form>
 </div>
+<script src="js/jquery-2.1.4.js"></script>
+<script src="js/bootstrap.js"></script>
 </body>
 </html>

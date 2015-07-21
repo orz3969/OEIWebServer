@@ -12,8 +12,7 @@
 <link href="css/submit_sheet.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/bootstrap-theme.css">
-<script src="js/jquery-2.1.4.js"></script>
-<script src="js/bootstrap.js"></script>
+
 <script type="text/javascript">
     function changeCode(){
         document.getElementById("rc").src="randcode?seed="+Math.random();
@@ -32,7 +31,8 @@
     </div>
 </div>
 <div class="center-block" id="form_area">
-    <form:form id="voice" name="voicePage" method="post" action="/AdviceForm.jsp/advice.action" class="form-horizontal">
+    <form:form id="voice" name="voicePage" method="post"
+               action="${pageContext.request.contextPath}/AdviceForm.jsp/advice.action" class="form-horizontal">
         <div class="form-group">
             <label for="inputOne" class="col-sm-2 control-label">Email address</label>
 
@@ -63,5 +63,7 @@
         </div>
     </form:form>
 </div>
+<script src="js/jquery-2.1.4.js"></script>
+<script src="js/bootstrap.js"></script>
 </body>
 </html>

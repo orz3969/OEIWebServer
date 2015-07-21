@@ -27,6 +27,5 @@ public class ErrorView implements View {
         } else {
             writer.println("Well,nothing to show.How sad is it,isn't it?");
         }
-
     }
 }
