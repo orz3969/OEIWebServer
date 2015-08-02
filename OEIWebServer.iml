@@ -40,5 +40,7 @@
     <orderEntry type="library" name="mysql-connector-java-5.1.35-bin" level="project" />
     <orderEntry type="library" name="poi-3.12-20150511" level="project" />
     <orderEntry type="library" name="commons-compress-1.9" level="project" />
+    <orderEntry type="library" name="xstream-1.4.7" level="project" />
+    <orderEntry type="library" name="xmlpull_1_0_5" level="project" />
   </component>
 </module>

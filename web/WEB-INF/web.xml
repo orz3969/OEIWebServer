@@ -19,6 +19,10 @@
         <servlet-name>RandomCode</servlet-name>
         <servlet-class>com.oeinetwork.Utils.PictureCode</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>WXService</servlet-name>
+        <servlet-class>com.oeinetwork.WXServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>*.action</url-pattern>
@@ -26,6 +30,10 @@
     <servlet-mapping>
         <servlet-name>RandomCode</servlet-name>
         <url-pattern>/randcode</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WXService</servlet-name>
+        <url-pattern>/wxport</url-pattern>
     </servlet-mapping>
 
 </web-app>

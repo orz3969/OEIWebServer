@@ -30,6 +30,7 @@ public class DatabaseHelper {
             return true;
         }catch (Exception e){
             session.close();
+            e.printStackTrace();
             errorMsg = e.getMessage();
             return false;
         }
@@ -45,6 +46,7 @@ public class DatabaseHelper {
             return true;
         } catch (Exception e) {
             session.close();
+            e.printStackTrace();
             errorMsg = e.getMessage();
             return false;
         }

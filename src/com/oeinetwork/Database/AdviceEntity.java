@@ -6,12 +6,16 @@ import javax.persistence.*;
  * Created by scotg_000 on 2015/7/17
  */
 @Entity
-@Table(name = "advice", schema = "", catalog = "oei")
+@Table(name = "advice", schema = "", catalog = "oeinetwork")
 public class AdviceEntity {
     private int id;
     private String contactM;
     private String voice;
     private long recordTime;
+
+    public void setRecordTime(Long recordTime) {
+        this.recordTime = recordTime;
+    }
 
     @Id
     @Column(name = "id")
