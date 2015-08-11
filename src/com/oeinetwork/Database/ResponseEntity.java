@@ -4,11 +4,10 @@ import javax.persistence.*;
 
 /**
  * Project OEIWebServer
- * Created by Zhen on 2015/7/31.
+ * Created by Zhen on 2015/8/11.
  */
-
 @Entity
-@Table(name = "response", schema = "", catalog = "oeinetwork")
+@Table(name = "response", schema = "", catalog = "oei")
 public class ResponseEntity {
     private int id;
     private String keyWord;
@@ -16,7 +15,7 @@ public class ResponseEntity {
     private String responseObject;
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false, insertable = true, updatable = true)
     public int getId() {
         return id;
     }
@@ -25,9 +24,8 @@ public class ResponseEntity {
         this.id = id;
     }
 
-
     @Basic
-    @Column(name = "keyWord")
+    @Column(name = "keyWord", nullable = true, insertable = true, updatable = true, length = 255)
     public String getKeyWord() {
         return keyWord;
     }
@@ -37,7 +35,7 @@ public class ResponseEntity {
     }
 
     @Basic
-    @Column(name = "responseType")
+    @Column(name = "responseType", nullable = true, insertable = true, updatable = true, length = 255)
     public String getResponseType() {
         return responseType;
     }
@@ -47,7 +45,7 @@ public class ResponseEntity {
     }
 
     @Basic
-    @Column(name = "responseObject")
+    @Column(name = "responseObject", nullable = true, insertable = true, updatable = true, length = 2147483647)
     public String getResponseObject() {
         return responseObject;
     }
@@ -57,26 +55,28 @@ public class ResponseEntity {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ResponseEntity entity = (ResponseEntity) o;
+
+        if (id != entity.id) return false;
+        if (keyWord != null ? !keyWord.equals(entity.keyWord) : entity.keyWord != null) return false;
+        if (responseType != null ? !responseType.equals(entity.responseType) : entity.responseType != null)
+            return false;
+        if (responseObject != null ? !responseObject.equals(entity.responseObject) : entity.responseObject != null)
+            return false;
+
+        return true;
+    }
+
+    @Override
     public int hashCode() {
         int result = id;
         result = 31 * result + (keyWord != null ? keyWord.hashCode() : 0);
         result = 31 * result + (responseType != null ? responseType.hashCode() : 0);
         result = 31 * result + (responseObject != null ? responseObject.hashCode() : 0);
         return result;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        ResponseEntity that = (ResponseEntity) o;
-
-        if (id != that.id) return false;
-        if (keyWord != null ? !keyWord.equals(that.keyWord) : that.keyWord != null) return false;
-        if (responseType != null ? !responseType.equals(that.responseType) : that.responseType != null) return false;
-        if (responseObject != null ? !responseObject.equals(that.responseObject) : that.responseObject != null) return false;
-
-        return true;
     }
 }

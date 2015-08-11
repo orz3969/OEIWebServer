@@ -1,6 +1,10 @@
 package com.oeinetwork;
 
+import com.oeinetwork.Database.DatabaseHelper;
+import com.oeinetwork.Models.MixMessage;
+import com.oeinetwork.Models.TextMessage;
 import com.oeinetwork.Utils.CheckSigUtil;
+import com.oeinetwork.Utils.JSONUtil;
 import com.oeinetwork.Utils.MessageUtils;
 import org.dom4j.DocumentException;
 
@@ -10,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -40,15 +45,44 @@ public class WXServlet extends HttpServlet {
             String msgType = "<![CDATA[" + map.get("MsgType") + "]]>";
             String content = "<![CDATA[" + map.get("Content") + "]]>";
             String message = null;
-            if (msgType.equals("<![CDATA[text]]>")) {
-                if (content.equals("<![CDATA[哈哈]]>")) {
-                    message = MessageUtils.initString(toUserName, fromUserName, MessageUtils.maimeng());
-                }
-            } else if (MessageUtils.MESSAGE_EVENT.equals(msgType)) {
-                String eventType = map.get("<![CDATA[Event]]>");
-                if (MessageUtils.MESSAGE_SUBSCRIBE.equals(eventType)) {
-                    message = MessageUtils.initString(toUserName, fromUserName, MessageUtils.subscribe());
-                }
+            switch (msgType) {
+                case "<![CDATA[text]]>":
+                    DatabaseHelper helper = new DatabaseHelper();
+                    List<ResponseEntity> responseList = helper.getAllResponse();
+                    String keyword;
+                    for (ResponseEntity entity : responseList) {
+                        keyword = "<![CDATA[" + entity.getKeyWord() + "]]>";
+                        if (keyword.equals(content)) {
+                            switch (entity.getResponseType()) {
+                                case "text":
+                                    TextMessage text_msg = JSONUtil.translateTextMessage(entity.getResponseObject());
+                                    message = MessageUtils.initString(toUserName, fromUserName, text_msg.getContent());
+                                    break;
+                                case "article":
+                                    MixMessage mix_msg = JSONUtil.translateMixMessage(entity.getResponseObject());
+                                    message = MessageUtils.initArticle(toUserName, fromUserName, mix_msg);
+                                    break;
+                                default:
+                                    message = MessageUtils.initString(toUserName, fromUserName, MessageUtils.unSupportedMessageType());
+                                    break;
+                            }
+                            break;
+                        }
+
+                    }
+                    if (content.equals("<![CDATA[哈哈]]>")) {
+                        message = MessageUtils.initString(toUserName, fromUserName, MessageUtils.maimeng());
+                    }
+                    break;
+                case MessageUtils.MESSAGE_EVENT:
+                    String eventType = map.get("<![CDATA[Event]]>");
+                    if (MessageUtils.MESSAGE_SUBSCRIBE.equals(eventType)) {
+                        message = MessageUtils.initString(toUserName, fromUserName, MessageUtils.subscribe());
+                    }
+                    break;
+                default:
+                    message = MessageUtils.initString(toUserName, fromUserName, MessageUtils.defaultReply());
+                    break;
             }
             System.out.println(message);
             out.print(message);

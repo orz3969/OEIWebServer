@@ -1,8 +1,11 @@
 package com.oeinetwork.Controller;
 
+import com.oeinetwork.Database.ActivityEntity;
+import com.oeinetwork.Database.ApplyBean;
 import com.oeinetwork.Database.ApplyEntity;
 import com.oeinetwork.Database.DatabaseHelper;
 import com.oeinetwork.Models.VerifyModel;
+import com.oeinetwork.Utils.JSONUtil;
 import com.oeinetwork.Utils.ZipHelper;
 import com.oeinetwork.Verify.ManagementVerify;
 import com.oeinetwork.Views.DownloadView;
@@ -13,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -28,17 +32,16 @@ public class SaveFormsController extends BaseController {
         @Override
         public ModelAndView executeJob(HttpServletRequest request) {
             DatabaseHelper helper = new DatabaseHelper();
-            List<ApplyEntity> list = helper.getAllApplication();
+            List<ActivityEntity> list = helper.getAllApplication();
             String dataDir = request.getServletContext().getRealPath("/WEB-INF");
             preWork();
             dataDir += "/template2.doc";
-
             try {
-                for (ApplyEntity aList : list) {
+                for (ActivityEntity aList : list) {
                     InputStream inputStream = new FileInputStream(dataDir);
                     HWPFDocument document = new HWPFDocument(inputStream);
                     Range range = document.getRange();
-                    IOOperation(aList, document, range, request);
+                    IOOperation(, document, range, request);
                     inputStream.close();
                 }
                 ZipHelper mHelp = new ZipHelper("C:\\Output\\apply.tar", "C:\\Docs");

@@ -163,6 +163,10 @@
                                     class="shortcut" target="_blank"><i
                                     class="shortcut-icon icon-list-alt"></i><span
                                     class="shortcut-label">导出报名表</span> </a>
+                                <a href=""
+                                   class="shortcut" target="_blank"><i
+                                        class="shortcut-icon icon-bookmark"></i><span
+                                        class="shortcut-label">添加关键字</span> </a>
                             </div>
 
                         </div>

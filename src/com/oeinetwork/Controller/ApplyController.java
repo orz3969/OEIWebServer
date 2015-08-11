@@ -1,6 +1,6 @@
 package com.oeinetwork.Controller;
 
-import com.oeinetwork.Database.ApplyEntity;
+import com.oeinetwork.Database.ApplyBean;
 import com.oeinetwork.Database.DatabaseHelper;
 import com.oeinetwork.Models.CodeVerify;
 import com.oeinetwork.Models.VerifyModel;
@@ -25,7 +25,7 @@ public class ApplyController extends BaseController {
         @Override
         public ModelAndView executeJob(HttpServletRequest request) {
             DatabaseHelper helper = new DatabaseHelper();
-            ApplyEntity apply = new ApplyEntity();
+            ApplyBean apply = new ApplyBean();
             apply.setContact(request.getParameter("phoneNum"));
             apply.setDayOfBirth(request.getParameter("date_of_birth"));
             apply.setFirstApply(request.getParameter("firstWish"));

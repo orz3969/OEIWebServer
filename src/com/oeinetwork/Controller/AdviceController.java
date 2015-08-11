@@ -1,16 +1,14 @@
 package com.oeinetwork.Controller;
 
-import com.oeinetwork.Database.AdviceEntity;
+import com.oeinetwork.Database.AdviceBean;
 import com.oeinetwork.Database.DatabaseHelper;
 import com.oeinetwork.Models.CodeVerify;
 import com.oeinetwork.Models.VerifyModel;
 import com.oeinetwork.Views.ConfirmView;
 import com.oeinetwork.Views.ErrorView;
-import com.oeinetwork.Views.SimpleView;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 
 /**
@@ -27,9 +25,8 @@ public class AdviceController extends BaseController {
         @Override
         public ModelAndView executeJob(HttpServletRequest request) {
             DatabaseHelper helper = new DatabaseHelper();
-            AdviceEntity advice = new AdviceEntity();
+            AdviceBean advice = new AdviceBean();
             advice.setContactM(request.getParameter("email"));
-            advice.setRecordTime(System.currentTimeMillis());
             advice.setVoice(request.getParameter("advice"));
             if(helper.saveAdvise(advice)){
                 return new ModelAndView(new ConfirmView(),null);

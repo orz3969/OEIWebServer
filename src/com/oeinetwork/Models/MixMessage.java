@@ -21,6 +21,8 @@ public class MixMessage {
     private String MsgType;
     @XStreamAlias("Articles")
     private MixMsg msgList;
+    @XStreamAlias("Count")
+    private int Count;
 
     public String getToUserName() {
         return ToUserName;
@@ -60,5 +62,13 @@ public class MixMessage {
 
     public void setMsgList(MixMsg msgList) {
         this.msgList = msgList;
+    }
+
+    public int getCount() {
+        return Count;
+    }
+
+    public void setCount(int count) {
+        Count = count;
     }
 }

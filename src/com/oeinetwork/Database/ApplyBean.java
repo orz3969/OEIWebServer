@@ -1,14 +1,10 @@
 package com.oeinetwork.Database;
 
-import javax.persistence.*;
 
 /**
  * Created by scotg_000 on 2015/7/17
  */
-@Entity
-@Table(name = "apply", schema = "", catalog = "oeinetwork")
-public class ApplyEntity {
-    private int id;
+public class ApplyBean {
     private String name;
     private String sex;
     private String dayOfBirth;
@@ -22,18 +18,6 @@ public class ApplyEntity {
     private String workExp;
     private String futureVision;
 
-    @Id
-    @Column(name = "id")
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    @Basic
-    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -42,8 +26,6 @@ public class ApplyEntity {
         this.name = name;
     }
 
-    @Basic
-    @Column(name = "sex")
     public String getSex() {
         return sex;
     }
@@ -52,8 +34,6 @@ public class ApplyEntity {
         this.sex = sex;
     }
 
-    @Basic
-    @Column(name = "day_of_birth")
     public String getDayOfBirth() {
         return dayOfBirth;
     }
@@ -62,8 +42,6 @@ public class ApplyEntity {
         this.dayOfBirth = dayOfBirth;
     }
 
-    @Basic
-    @Column(name = "politic")
     public String getPolitic() {
         return politic;
     }
@@ -72,8 +50,6 @@ public class ApplyEntity {
         this.politic = politic;
     }
 
-    @Basic
-    @Column(name = "major")
     public String getMajor() {
         return major;
     }
@@ -82,8 +58,6 @@ public class ApplyEntity {
         this.major = major;
     }
 
-    @Basic
-    @Column(name = "contact")
     public String getContact() {
         return contact;
     }
@@ -92,8 +66,6 @@ public class ApplyEntity {
         this.contact = contact;
     }
 
-    @Basic
-    @Column(name = "firstApply")
     public String getFirstApply() {
         return firstApply;
     }
@@ -102,8 +74,6 @@ public class ApplyEntity {
         this.firstApply = firstApply;
     }
 
-    @Basic
-    @Column(name = "secondApply")
     public String getSecondApply() {
         return secondApply;
     }
@@ -112,8 +82,6 @@ public class ApplyEntity {
         this.secondApply = secondApply;
     }
 
-    @Basic
-    @Column(name = "thirdApply")
     public String getThirdApply() {
         return thirdApply;
     }
@@ -122,8 +90,6 @@ public class ApplyEntity {
         this.thirdApply = thirdApply;
     }
 
-    @Basic
-    @Column(name = "self_introduction")
     public String getSelfIntroduction() {
         return selfIntroduction;
     }
@@ -132,8 +98,6 @@ public class ApplyEntity {
         this.selfIntroduction = selfIntroduction;
     }
 
-    @Basic
-    @Column(name = "work_exp")
     public String getWorkExp() {
         return workExp;
     }
@@ -142,8 +106,6 @@ public class ApplyEntity {
         this.workExp = workExp;
     }
 
-    @Basic
-    @Column(name = "future_vision")
     public String getFutureVision() {
         return futureVision;
     }
@@ -157,9 +119,7 @@ public class ApplyEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ApplyEntity that = (ApplyEntity) o;
-
-        if (id != that.id) return false;
+        ApplyBean that = (ApplyBean) o;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (sex != null ? !sex.equals(that.sex) : that.sex != null) return false;
         if (dayOfBirth != null ? !dayOfBirth.equals(that.dayOfBirth) : that.dayOfBirth != null) return false;
@@ -179,7 +139,7 @@ public class ApplyEntity {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (sex != null ? sex.hashCode() : 0);
         result = 31 * result + (dayOfBirth != null ? dayOfBirth.hashCode() : 0);
