@@ -2,7 +2,6 @@ package com.oeinetwork.Controller;
 
 import com.oeinetwork.Database.ActivityEntity;
 import com.oeinetwork.Database.ApplyBean;
-import com.oeinetwork.Database.ApplyEntity;
 import com.oeinetwork.Database.DatabaseHelper;
 import com.oeinetwork.Models.VerifyModel;
 import com.oeinetwork.Utils.JSONUtil;
@@ -16,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -41,10 +39,10 @@ public class SaveFormsController extends BaseController {
                     InputStream inputStream = new FileInputStream(dataDir);
                     HWPFDocument document = new HWPFDocument(inputStream);
                     Range range = document.getRange();
-                    IOOperation(, document, range, request);
+                    IOOperation(JSONUtil.translateJSONintoApplyBean(aList.getActivityData()), document, range, request);
                     inputStream.close();
                 }
-                ZipHelper mHelp = new ZipHelper("C:\\Output\\apply.tar", "C:\\Docs");
+                ZipHelper mHelp = new ZipHelper("C:\\Output\\apply.tar.gz", "C:\\Docs");
                 mHelp.Start();
                 return new ModelAndView(new DownloadView());
             } catch (Exception e) {
@@ -60,7 +58,7 @@ public class SaveFormsController extends BaseController {
             return new ManagementVerify(request);
         }
 
-        public void IOOperation(ApplyEntity entity, HWPFDocument document, Range range, HttpServletRequest request) throws Exception {
+        public void IOOperation(ApplyBean entity, HWPFDocument document, Range range, HttpServletRequest request) throws Exception {
             range.replaceText("NameArea", entity.getName());
             range.replaceText("Sex", entity.getSex());
             range.replaceText("DateOfBirth", entity.getDayOfBirth());
@@ -81,7 +79,7 @@ public class SaveFormsController extends BaseController {
 
         public void preWork() {
             String docFolder = "C:\\Docs";
-            String outputFile = "C:\\Output\\apply.tar";
+            String outputFile = "C:\\Output\\apply.tar.gz";
             File docs = new File(docFolder);
             File out = new File(outputFile);
             if (out.exists()) {

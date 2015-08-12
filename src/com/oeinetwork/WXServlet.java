@@ -1,6 +1,7 @@
 package com.oeinetwork;
 
 import com.oeinetwork.Database.DatabaseHelper;
+import com.oeinetwork.Database.ResponseEntity;
 import com.oeinetwork.Models.MixMessage;
 import com.oeinetwork.Models.TextMessage;
 import com.oeinetwork.Utils.CheckSigUtil;

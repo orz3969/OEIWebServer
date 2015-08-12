@@ -14,6 +14,7 @@ import org.json.JSONObject;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.regex.Pattern;
 
 /**
@@ -130,10 +131,57 @@ public class JSONUtil {
             }
         }
 
-        ApplyBean al = new ApplyBean();
-
 
         return object;
     }
 
-    public static }
+    public static ApplyBean translateJSONintoApplyBean(String json) {
+        ApplyBean bean = new ApplyBean();
+        Method[] methods = bean.getClass().getMethods();
+        try {
+            JSONObject object = new JSONObject(json);
+            Iterator<String> iterator = object.keys();
+            String key;
+            String methodName;
+            for (; iterator.hasNext(); ) {
+                key = iterator.next();
+                if (!key.equals("beanType")) {
+                    methodName = "set" + key;
+                    for (Method method : methods) {
+                        if (methodName.equals(method.getName())) {
+                            method.invoke(bean, (String) object.get(key));
+                        }
+                    }
+                }
+            }
+        } catch (JSONException | InvocationTargetException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return bean;
+    }
+
+    public static AdviceBean translateJSONintoAdviceBean(String json) {
+        AdviceBean bean = new AdviceBean();
+        Method[] methods = bean.getClass().getMethods();
+        try {
+            JSONObject object = new JSONObject(json);
+            Iterator<String> iterator = object.keys();
+            String key;
+            String methodName;
+            for (; iterator.hasNext(); ) {
+                key = iterator.next();
+                if (!key.equals("beanType")) {
+                    methodName = "set" + key;
+                    for (Method method : methods) {
+                        if (methodName.equals(method.getName())) {
+                            method.invoke(bean, (String) object.get(key));
+                        }
+                    }
+                }
+            }
+        } catch (JSONException | InvocationTargetException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return bean;
+    }
+}

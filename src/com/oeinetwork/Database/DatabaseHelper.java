@@ -24,7 +24,7 @@ public class DatabaseHelper {
         ActivityEntity activity = new ActivityEntity();
         activity.setActivityName("advice");
         activity.setRecordTime(System.currentTimeMillis());
-        activity.setActivityData(JSONUtil.translateBeanIntoJSON(entity));
+        activity.setActivityData(JSONUtil.translateBeanIntoJSON(entity, "advice"));
         Transaction transaction = session.beginTransaction();
         try {
             session.save(activity);
@@ -44,7 +44,7 @@ public class DatabaseHelper {
         ActivityEntity activity = new ActivityEntity();
         activity.setActivityName("apply");
         activity.setRecordTime(System.currentTimeMillis());
-        activity.setActivityData(JSONUtil.translateBeanIntoJSON(entity));
+        activity.setActivityData(JSONUtil.translateBeanIntoJSON(entity, "apply"));
         Transaction transaction = session.beginTransaction();
         try {
             session.save(activity);
