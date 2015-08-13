@@ -10,6 +10,7 @@ import com.oeinetwork.Views.ErrorView;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 
 /**
@@ -26,11 +27,17 @@ public class OnlineCompetitionController extends BaseController {
         public ModelAndView executeJob(HttpServletRequest request) {
             DatabaseHelper helper = new DatabaseHelper();
             CompeteBean compete = new CompeteBean();
-            compete.setName(request.getParameter("applicant"));
-            compete.setClassName(request.getParameter("classroom"));
-            compete.setGroup(request.getParameter("group"));
-            compete.setPhoneNumber(request.getParameter("phone_num"));
-            compete.setQQNumber(request.getParameter("qq"));
+            try {
+                request.setCharacterEncoding("UTF-8");
+                compete.setName(new String((request.getParameter("applicant")).getBytes("ISO-8859-1"), "UTF-8"));
+                compete.setClassName(new String((request.getParameter("classroom")).getBytes("ISO-8859-1"), "UTF-8"));
+                compete.setGroup(new String((request.getParameter("group")).getBytes("ISO-8859-1"), "UTF-8"));
+                compete.setPhoneNumber(new String((request.getParameter("phone_num")).getBytes("ISO-8859-1"), "UTF-8"));
+                compete.setQQNumber(new String((request.getParameter("qq")).getBytes("ISO-8859-1"), "UTF-8"));
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+
             if (helper.saveCompetition(compete)) {
                 return new ModelAndView(new ConfirmView(), null);
             } else {

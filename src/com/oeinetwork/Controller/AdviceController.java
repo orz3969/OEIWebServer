@@ -9,6 +9,7 @@ import com.oeinetwork.Views.ErrorView;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 
 /**
@@ -26,8 +27,13 @@ public class AdviceController extends BaseController {
         public ModelAndView executeJob(HttpServletRequest request) {
             DatabaseHelper helper = new DatabaseHelper();
             AdviceBean advice = new AdviceBean();
-            advice.setContactM(request.getParameter("email"));
-            advice.setVoice(request.getParameter("advice"));
+            try {
+                request.setCharacterEncoding("UTF-8");
+                advice.setContactM(new String((request.getParameter("email")).getBytes("ISO-8859-1"), "UTF-8"));
+                advice.setVoice(new String((request.getParameter("advice")).getBytes("ISO-8859-1"), "UTF-8"));
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
             if(helper.saveAdvise(advice)){
                 return new ModelAndView(new ConfirmView(),null);
             }else{
