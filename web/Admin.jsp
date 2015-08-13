@@ -162,11 +162,11 @@
                                     href="${pageContext.request.contextPath}/Admin.jsp/save.action?encryptInput=<%=encrypt %>"
                                     class="shortcut" target="_blank"><i
                                     class="shortcut-icon icon-list-alt"></i><span
-                                    class="shortcut-label">导出报名表</span> </a>
-                                <a href=""
+                                    class="shortcut-label">导出word总汇</span> </a>
+                                <a href="${pageContext.request.contextPath}/Admin.jsp/xls.action?encryptInput=<%=encrypt %>"
                                    class="shortcut" target="_blank"><i
                                         class="shortcut-icon icon-bookmark"></i><span
-                                        class="shortcut-label">添加关键字</span> </a>
+                                        class="shortcut-label">Excel导出</span> </a>
                             </div>
 
                         </div>

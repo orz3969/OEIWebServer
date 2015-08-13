@@ -7,7 +7,7 @@ import com.oeinetwork.Models.VerifyModel;
 import com.oeinetwork.Utils.JSONUtil;
 import com.oeinetwork.Utils.ZipHelper;
 import com.oeinetwork.Verify.ManagementVerify;
-import com.oeinetwork.Views.DownloadView;
+import com.oeinetwork.Views.DownloadViewBase;
 import com.oeinetwork.Views.ErrorView;
 import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.hwpf.usermodel.Range;
@@ -44,7 +44,7 @@ public class SaveFormsController extends BaseController {
                 }
                 ZipHelper mHelp = new ZipHelper("C:\\Output\\apply.tar.gz", "C:\\Docs");
                 mHelp.Start();
-                return new ModelAndView(new DownloadView());
+                return new ModelAndView(new DownloadViewBase("C:\\Output\\apply.tar.gz", "apply.tar.gz", "application/octet-stream"));
             } catch (Exception e) {
                 e.printStackTrace();
                 HashMap<String, String> map = new HashMap<>();
