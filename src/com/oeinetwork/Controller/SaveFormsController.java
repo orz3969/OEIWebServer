@@ -42,9 +42,9 @@ public class SaveFormsController extends BaseController {
                     IOOperation(JSONUtil.translateJSONintoApplyBean(aList.getActivityData()), document, range, request);
                     inputStream.close();
                 }
-                ZipHelper mHelp = new ZipHelper("C:\\Output\\apply.tar.gz", "C:\\Docs");
+                ZipHelper mHelp = new ZipHelper("/home/Output/apply.tar.gz", "/home/Docs/Word");
                 mHelp.Start();
-                return new ModelAndView(new DownloadViewBase("C:\\Output\\apply.tar.gz", "apply.tar.gz", "application/octet-stream"));
+                return new ModelAndView(new DownloadViewBase("/home/Output/apply.tar.gz", "apply.tar.gz", "application/octet-stream"));
             } catch (Exception e) {
                 e.printStackTrace();
                 HashMap<String, String> map = new HashMap<>();
@@ -78,8 +78,8 @@ public class SaveFormsController extends BaseController {
         }
 
         public void preWork() {
-            String docFolder = "C:\\Docs";
-            String outputFile = "C:\\Output\\apply.tar.gz";
+            String docFolder = "/home/Docs/Word";
+            String outputFile = "/home/Output/apply.tar.gz";
             File docs = new File(docFolder);
             File out = new File(outputFile);
             if (out.exists()) {

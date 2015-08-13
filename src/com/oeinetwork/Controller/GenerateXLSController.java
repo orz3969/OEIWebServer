@@ -2,6 +2,7 @@ package com.oeinetwork.Controller;
 
 import com.oeinetwork.Database.ActivityEntity;
 import com.oeinetwork.Database.ApplyBean;
+import com.oeinetwork.Database.CompeteBean;
 import com.oeinetwork.Database.DatabaseHelper;
 import com.oeinetwork.Models.VerifyModel;
 import com.oeinetwork.Utils.JSONUtil;
@@ -38,14 +39,14 @@ public class GenerateXLSController extends BaseController {
         @Override
         public ModelAndView executeJob(HttpServletRequest request) {
             DatabaseHelper helper = new DatabaseHelper();
-            List<ActivityEntity> list = helper.getAllApplication();
+            List<ActivityEntity> list = helper.getAllCompete();
             Workbook datasheet = new HSSFWorkbook();
-            ApplyBean bean;
+            CompeteBean bean;
             Row row;
             Sheet data = datasheet.createSheet("data");
             for (int i = 0; i < list.size(); i++) {
                 row = data.createRow(i);
-                bean = JSONUtil.translateJSONintoApplyBean(list.get(i).getActivityData());
+                bean = JSONUtil.translateJSONintoCompeteBean(list.get(i).getActivityData());
                 Method[] methods = bean.getClass().getMethods();
                 String methodName;
                 String regPattern = "^get+[a-zA-z]*";
@@ -64,10 +65,10 @@ public class GenerateXLSController extends BaseController {
             }
             preWork();
             try {
-                FileOutputStream fileOut = new FileOutputStream("C:\\Docs\\workbook.xls");
+                FileOutputStream fileOut = new FileOutputStream("/home/Docs/workbook.xls");
                 datasheet.write(fileOut);
                 fileOut.close();
-                return new ModelAndView(new DownloadViewBase("C:\\Docs\\workbook.xls", "workbook.xls", "application/vnd.ms-excel"));
+                return new ModelAndView(new DownloadViewBase("/home/Docs/workbook.xls", "workbook.xls", "application/vnd.ms-excel"));
             } catch (IOException e) {
                 e.printStackTrace();
 
@@ -78,7 +79,7 @@ public class GenerateXLSController extends BaseController {
         }
 
         public void preWork() {
-            String outputFile = "C:\\Docs\\workbook.xls";
+            String outputFile = "/home/Docs/workbook.xls";
             File out = new File(outputFile);
             if (out.exists()) {
                 out.delete();

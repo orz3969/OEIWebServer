@@ -7,7 +7,7 @@ import javax.persistence.*;
  * Created by Zhen on 2015/8/11.
  */
 @Entity
-@Table(name = "response", schema = "", catalog = "oei")
+@Table(name = "response", schema = "", catalog = "oeinetwork")
 public class ResponseEntity {
     private int id;
     private String keyWord;

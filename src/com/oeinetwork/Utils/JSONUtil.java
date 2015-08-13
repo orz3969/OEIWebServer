@@ -2,6 +2,7 @@ package com.oeinetwork.Utils;
 
 import com.oeinetwork.Database.AdviceBean;
 import com.oeinetwork.Database.ApplyBean;
+import com.oeinetwork.Database.CompeteBean;
 import com.oeinetwork.Models.MixMessage;
 import com.oeinetwork.Models.MixMsg;
 import com.oeinetwork.Models.MixSingleMessage;
@@ -137,6 +138,31 @@ public class JSONUtil {
 
     public static ApplyBean translateJSONintoApplyBean(String json) {
         ApplyBean bean = new ApplyBean();
+        Method[] methods = bean.getClass().getMethods();
+        try {
+            JSONObject object = new JSONObject(json);
+            Iterator<String> iterator = object.keys();
+            String key;
+            String methodName;
+            for (; iterator.hasNext(); ) {
+                key = iterator.next();
+                if (!key.equals("beanType")) {
+                    methodName = "set" + key;
+                    for (Method method : methods) {
+                        if (methodName.equals(method.getName())) {
+                            method.invoke(bean, (String) object.get(key));
+                        }
+                    }
+                }
+            }
+        } catch (JSONException | InvocationTargetException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return bean;
+    }
+
+    public static CompeteBean translateJSONintoCompeteBean(String json) {
+        CompeteBean bean = new CompeteBean();
         Method[] methods = bean.getClass().getMethods();
         try {
             JSONObject object = new JSONObject(json);

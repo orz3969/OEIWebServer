@@ -59,9 +59,37 @@ public class DatabaseHelper {
         }
     }
 
+    public boolean saveCompetition(CompeteBean bean) {
+        session = HibernateService.getSession();
+        ActivityEntity activity = new ActivityEntity();
+        activity.setActivityName("compete");
+        activity.setRecordTime(System.currentTimeMillis());
+        activity.setActivityData(JSONUtil.translateBeanIntoJSON(bean, "compete"));
+        Transaction transaction = session.beginTransaction();
+        try {
+            session.save(activity);
+            transaction.commit();
+            session.close();
+            return true;
+        } catch (Exception e) {
+            session.close();
+            e.printStackTrace();
+            errorMsg = e.getMessage();
+            return false;
+        }
+    }
+
     public List getAllApplication() {
         session = HibernateService.getSession();
         Query query = session.createQuery("from ActivityEntity where activityName = 'apply'");
+        List list = query.list();
+        session.close();
+        return list;
+    }
+
+    public List getAllCompete() {
+        session = HibernateService.getSession();
+        Query query = session.createQuery("from ActivityEntity where activityName = 'compete'");
         List list = query.list();
         session.close();
         return list;
