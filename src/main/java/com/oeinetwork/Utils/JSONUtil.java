@@ -7,7 +7,6 @@ import com.oeinetwork.Models.MixMessage;
 import com.oeinetwork.Models.MixMsg;
 import com.oeinetwork.Models.MixSingleMessage;
 import com.oeinetwork.Models.TextMessage;
-import com.sun.istack.internal.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,7 +23,7 @@ import java.util.regex.Pattern;
  */
 public class JSONUtil {
 
-    public static TextMessage translateTextMessage(@NotNull String input) {
+    public static TextMessage translateTextMessage(String input) {
         try {
             JSONObject jsonObject = new JSONObject(input);
             TextMessage textMessage = new TextMessage();
@@ -37,7 +36,7 @@ public class JSONUtil {
         }
     }
 
-    public static MixMessage translateMixMessage(@NotNull String input) {
+    public static MixMessage translateMixMessage(String input) {
         try {
             MixMessage mixMessage = new MixMessage();
 
@@ -67,7 +66,7 @@ public class JSONUtil {
         }
     }
 
-    public static String translateTextIntoJson(@NotNull TextMessage input) {
+    public static String translateTextIntoJson(TextMessage input) {
         JSONObject object = new JSONObject();
         try {
             object.put("MsgType", input.getMsgType());
@@ -79,7 +78,7 @@ public class JSONUtil {
         }
     }
 
-    public static String translateMixIntoJson(@NotNull MixMessage input) {
+    public static String translateMixIntoJson(MixMessage input) {
         JSONObject object = new JSONObject();
         try {
             object.put("MsgType", input.getMsgType());

@@ -65,13 +65,14 @@ public class GenerateXLSController extends BaseController {
             }
             preWork();
             try {
-                FileOutputStream fileOut = new FileOutputStream("/home/Docs/workbook.xls");
+                //FileOutputStream fileOut = new FileOutputStream("/home/Docs/workbook.xls");
+                FileOutputStream fileOut = new FileOutputStream("C:\\Docs\\workbook.xls");
                 datasheet.write(fileOut);
                 fileOut.close();
-                return new ModelAndView(new DownloadViewBase("/home/Docs/workbook.xls", "workbook.xls", "application/vnd.ms-excel"));
+                return new ModelAndView(new DownloadViewBase("C:\\Docs\\workbook.xls", "workbook.xls", "application/vnd.ms-excel"));
+                //return new ModelAndView(new DownloadViewBase("/home/Docs/workbook.xls", "workbook.xls", "application/vnd.ms-excel"));
             } catch (IOException e) {
                 e.printStackTrace();
-
                 HashMap<String, String> map = new HashMap<>();
                 map.put("error_msg", "Failed to operate " + e.getMessage());
                 return new ModelAndView(new ErrorView(), map);

@@ -42,9 +42,11 @@ public class SaveFormsController extends BaseController {
                     IOOperation(JSONUtil.translateJSONintoApplyBean(aList.getActivityData()), document, range, request);
                     inputStream.close();
                 }
-                ZipHelper mHelp = new ZipHelper("/home/Output/apply.tar.gz", "/home/Docs/Word");
+                //ZipHelper mHelp = new ZipHelper("/home/Output/apply.tar.gz", "/home/Docs/Word");
+                ZipHelper mHelp = new ZipHelper("C:\\Docs\\Output\\apply.tar.gz", "C:\\Docs\\Word");
                 mHelp.Start();
-                return new ModelAndView(new DownloadViewBase("/home/Output/apply.tar.gz", "apply.tar.gz", "application/octet-stream"));
+                //return new ModelAndView(new DownloadViewBase("/home/Output/apply.tar.gz", "apply.tar.gz", "application/octet-stream"));
+                return new ModelAndView(new DownloadViewBase("C:\\Docs\\Output\\apply.tar.gz", "apply.tar.gz", "application/octet-stream"));
             } catch (Exception e) {
                 e.printStackTrace();
                 HashMap<String, String> map = new HashMap<>();
@@ -71,15 +73,18 @@ public class SaveFormsController extends BaseController {
             range.replaceText("SelfIntroduction", entity.getSelfIntroduction());
             range.replaceText("WorkExperience", entity.getWorkExp());
             range.replaceText("FutureVision", entity.getFutureVision());
-            String path = "C:\\Docs\\" + entity.getName() + System.currentTimeMillis() + ".doc";
+            String path = "C:\\Docs\\Word" + entity.getName() + System.currentTimeMillis() + ".doc";
+            //String path = "/home/Docs/Word/" + entity.getName() + System.currentTimeMillis() + ".doc";
             OutputStream outputStream = new FileOutputStream(path);
             document.write(outputStream);
             outputStream.close();
         }
 
         public void preWork() {
-            String docFolder = "/home/Docs/Word";
-            String outputFile = "/home/Output/apply.tar.gz";
+            //String docFolder = "/home/Docs/Word";
+            String docFolder = "C:\\Docs\\Word";
+            //String outputFile = "/home/Docs/Output/apply.tar.gz";
+            String outputFile = "C:\\Docs\\Output\\apply.tar.gz";
             File docs = new File(docFolder);
             File out = new File(outputFile);
             if (out.exists()) {

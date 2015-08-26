@@ -3,7 +3,7 @@ package com.oeinetwork.Models;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
- * Created by Zhen on 2015/7/30.
+ * Created by Zhen on 2015/7/30
  */
 @XStreamAlias("xml")
 public class TextMessage {
