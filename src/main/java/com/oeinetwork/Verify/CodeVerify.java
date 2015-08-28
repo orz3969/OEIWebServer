@@ -1,4 +1,6 @@
-package com.oeinetwork.Models;
+package com.oeinetwork.Verify;
+
+import com.oeinetwork.Models.VerifyModel;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,6 +16,8 @@ public class CodeVerify extends VerifyModel {
      *
      * @param req
      */
+    private boolean isConfirm = false;
+
     public CodeVerify(HttpServletRequest req) {
         super(req);
     }
@@ -22,14 +26,25 @@ public class CodeVerify extends VerifyModel {
     public boolean verify() {
         HttpServletRequest request = this.getRequest();
         HttpSession session = request.getSession();
+        String userInput = request.getParameter("validation_code");
         String code = (String) session.getAttribute("randomCode");
+        System.out.println(code);
 
-        if (request.getParameter("validation_code") != null && request.getParameter("validation_code").equals(code)) {
+        System.out.println(userInput);
+        if (userInput != null) {
+            userInput = userInput.toUpperCase();
+            System.out.println(userInput);
+            if (userInput.equals(code)) {
+                isConfirm = true;
+            }
+
+        }
+
+        if (isConfirm) {
             return true;
         } else {
-            System.out.println(request.getParameter("validation_code") == null);
             Map<String, String> error = new HashMap<>();
-            error.put("error_msg", "Validation Wrong code");
+            error.put("error_msg", "验证码错误");
             setErrors(error);
             return false;
         }

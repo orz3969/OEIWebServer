@@ -65,12 +65,12 @@ public class GenerateXLSController extends BaseController {
             }
             preWork();
             try {
-                //FileOutputStream fileOut = new FileOutputStream("/home/Docs/workbook.xls");
-                FileOutputStream fileOut = new FileOutputStream("C:\\Docs\\workbook.xls");
+                FileOutputStream fileOut = new FileOutputStream("/home/Docs/workbook.xls");
+                //FileOutputStream fileOut = new FileOutputStream("C:\\Docs\\workbook.xls");
                 datasheet.write(fileOut);
                 fileOut.close();
-                return new ModelAndView(new DownloadViewBase("C:\\Docs\\workbook.xls", "workbook.xls", "application/vnd.ms-excel"));
-                //return new ModelAndView(new DownloadViewBase("/home/Docs/workbook.xls", "workbook.xls", "application/vnd.ms-excel"));
+                //return new ModelAndView(new DownloadViewBase("C:\\Docs\\workbook.xls", "workbook.xls", "application/vnd.ms-excel"));
+                return new ModelAndView(new DownloadViewBase("/home/Docs/workbook.xls", "workbook.xls", "application/vnd.ms-excel"));
             } catch (IOException e) {
                 e.printStackTrace();
                 HashMap<String, String> map = new HashMap<>();
@@ -80,6 +80,7 @@ public class GenerateXLSController extends BaseController {
         }
 
         public void preWork() {
+            //String outputFile = "C:\\Docs\\workbook.xls";
             String outputFile = "/home/Docs/workbook.xls";
             File out = new File(outputFile);
             if (out.exists()) {

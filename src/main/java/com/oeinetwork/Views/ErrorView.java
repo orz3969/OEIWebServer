@@ -21,12 +21,14 @@ public class ErrorView implements View {
     @Override
     public void render(Map<String, ?> map, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
         PrintWriter writer = httpServletResponse.getWriter();
-        writer.println("<!DOCTYPE html><html>\n" + "<head><title>OEIMedia</title>\n" + "</head><body><h1>Looks like you have got several errors:");
+        writer.println("<!DOCTYPE html><html>\n" + "<head><title>OEIMedia</title>\n" + " <style type=\"text/css\">" +
+                "\t\tbody{text-align:center;}\n" +
+                "\t</style>" + "</head><body><h1>似乎遇到了一点麻烦:");
         if (map != null) {
             writer.println("ERROR:" + map.get("error_msg") + "</h1></body>" +
                     "</html>");
         } else {
-            writer.println("Well,nothing to show.How sad is it,isn't it?" + "</h1></body>" +
+            writer.println("怎么回事（" + "</h1></body>" +
                     "</html>");
         }
     }

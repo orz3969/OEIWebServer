@@ -43,5 +43,4 @@
         <servlet-name>PhoneAccess</servlet-name>
         <url-pattern>/phone</url-pattern>
     </servlet-mapping>
-
 </web-app>

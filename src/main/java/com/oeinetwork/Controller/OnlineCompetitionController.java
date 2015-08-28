@@ -2,7 +2,7 @@ package com.oeinetwork.Controller;
 
 import com.oeinetwork.Database.CompeteBean;
 import com.oeinetwork.Database.DatabaseHelper;
-import com.oeinetwork.Models.CodeVerify;
+import com.oeinetwork.Verify.CodeVerify;
 import com.oeinetwork.Models.VerifyModel;
 import com.oeinetwork.Views.ConfirmView;
 import com.oeinetwork.Views.ErrorView;

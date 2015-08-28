@@ -2,7 +2,7 @@ package com.oeinetwork.Controller;
 
 import com.oeinetwork.Database.ApplyBean;
 import com.oeinetwork.Database.DatabaseHelper;
-import com.oeinetwork.Models.CodeVerify;
+import com.oeinetwork.Verify.CodeVerify;
 import com.oeinetwork.Models.VerifyModel;
 import com.oeinetwork.Views.ConfirmView;
 import com.oeinetwork.Views.ErrorView;
@@ -35,7 +35,7 @@ public class ApplyController extends BaseController {
                 apply.setFutureVision(new String((request.getParameter("future_vision")).getBytes("ISO-8859-1"), "UTF-8"));
                 apply.setMajor(new String((request.getParameter("major")).getBytes("ISO-8859-1"), "UTF-8"));
                 apply.setPolitic(new String((request.getParameter("politic")).getBytes("ISO-8859-1"), "UTF-8"));
-                apply.setName(new String((request.getParameter("name")).getBytes("ISO-8859-1"), "UTF-8"));
+                apply.setName(new String((request.getParameter("Name")).getBytes("ISO-8859-1"), "UTF-8"));
                 apply.setSecondApply(new String((request.getParameter("secondWish")).getBytes("ISO-8859-1"), "UTF-8"));
                 apply.setSelfIntroduction(new String((request.getParameter("self_introduction")).getBytes("ISO-8859-1"), "UTF-8"));
                 apply.setSex(new String((request.getParameter("sex")).getBytes("ISO-8859-1"), "UTF-8"));

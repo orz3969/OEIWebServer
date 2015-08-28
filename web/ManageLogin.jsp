@@ -11,22 +11,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
 <link href="css/login.css" rel="stylesheet" type="text/css">
 <head>
-    <title>ManagementLogin</title>
+    <title>后台登陆</title>
 </head>
 <body>
 
 <!-- Header -->
 <header id="header">
-    <h1>OEINetwork Login</h1>
+    <h1>光电团学联 服务器后台登陆</h1>
 
-    <p>Get access to all application forms and works<br/>
-        Start here.</p>
+    <p>请在下方输入密码<br/>
+        以获得权限.</p>
 </header>
 
 <!-- Signup Form -->
 <form id="signup-form" method="post" action="${pageContext.request.contextPath}/Admin.jsp">
-    <input type="password" name="entryCode" id="email" placeholder="Enter the password"/>
-    <input type="submit" value="Login"/>
+    <input type="password" name="entryCode" id="email" placeholder="密码"/>
+    <input type="submit" value="登陆"/>
 </form>
 <!--[if lte IE 8]>
 <script src="js/ie/respond.min.js"></script><![endif]-->

@@ -16,6 +16,7 @@ public class BaseController implements Controller {
 
     @Override
     public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        response.setHeader("Content-type", "text/html;charset=UTF-8");
         VerifyModel model = work.getVerifyInfo(request);
         if (model != null) {
             if (!model.verify()) {

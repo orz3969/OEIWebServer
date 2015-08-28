@@ -29,7 +29,7 @@ public class DownloadViewBase implements View {
 
     @Override
     public void render(Map<String, ?> model, HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String dataDir = request.getServletContext().getRealPath("/WEB-INF");
+        //String dataDir = request.getServletContext().getRealPath("/WEB-INF");
         File file = new File(fileName);
         response.setContentType(contentType);
         response.addHeader("Content-Disposition", "attachment; filename=" + displayName);
