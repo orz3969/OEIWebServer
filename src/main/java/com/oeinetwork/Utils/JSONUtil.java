@@ -133,10 +133,11 @@ public class JSONUtil {
         return object;
     }
 
-    public static ApplyBean translateJSONintoApplyBean(String json) {
-        ApplyBean bean = new ApplyBean();
-        Method[] methods = bean.getClass().getMethods();
+
+    public static Object translateJsonIntoBean(String json, Class mClass) {
         try {
+            Object mobject = mClass.newInstance();
+            Method[] methods = mobject.getClass().getMethods();
             JSONObject object = new JSONObject(json);
             Iterator<String> iterator = object.keys();
             String key;
@@ -147,65 +148,16 @@ public class JSONUtil {
                     methodName = "set" + key;
                     for (Method method : methods) {
                         if (methodName.equals(method.getName())) {
-                            method.invoke(bean, (String) object.get(key));
+                            method.invoke(mobject, (String) object.get(key));
                         }
                     }
                 }
             }
-        } catch (JSONException | InvocationTargetException | IllegalAccessException e) {
+            return mobject;
+        } catch (InstantiationException | IllegalAccessException | JSONException | InvocationTargetException e) {
             e.printStackTrace();
+            return null;
         }
-        return bean;
     }
 
-
-    public static CompeteBean translateJSONintoCompeteBean(String json) {
-        CompeteBean bean = new CompeteBean();
-        Method[] methods = bean.getClass().getMethods();
-        try {
-            JSONObject object = new JSONObject(json);
-            Iterator<String> iterator = object.keys();
-            String key;
-            String methodName;
-            for (; iterator.hasNext(); ) {
-                key = iterator.next();
-                if (!key.equals("beanType")) {
-                    methodName = "set" + key;
-                    for (Method method : methods) {
-                        if (methodName.equals(method.getName())) {
-                            method.invoke(bean, (String) object.get(key));
-                        }
-                    }
-                }
-            }
-        } catch (JSONException | InvocationTargetException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
-        return bean;
-    }
-
-    public static AdviceBean translateJSONintoAdviceBean(String json) {
-        AdviceBean bean = new AdviceBean();
-        Method[] methods = bean.getClass().getMethods();
-        try {
-            JSONObject object = new JSONObject(json);
-            Iterator<String> iterator = object.keys();
-            String key;
-            String methodName;
-            for (; iterator.hasNext(); ) {
-                key = iterator.next();
-                if (!key.equals("beanType")) {
-                    methodName = "set" + key;
-                    for (Method method : methods) {
-                        if (methodName.equals(method.getName())) {
-                            method.invoke(bean, (String) object.get(key));
-                        }
-                    }
-                }
-            }
-        } catch (JSONException | InvocationTargetException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
-        return bean;
-    }
 }

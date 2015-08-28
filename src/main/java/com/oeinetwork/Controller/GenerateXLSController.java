@@ -46,7 +46,7 @@ public class GenerateXLSController extends BaseController {
             Sheet data = datasheet.createSheet("data");
             for (int i = 0; i < list.size(); i++) {
                 row = data.createRow(i);
-                bean = JSONUtil.translateJSONintoCompeteBean(list.get(i).getActivityData());
+                bean = (CompeteBean) JSONUtil.translateJsonIntoBean(list.get(i).getActivityData(), CompeteBean.class);
                 Method[] methods = bean.getClass().getMethods();
                 String methodName;
                 String regPattern = "^get+[a-zA-z]*";

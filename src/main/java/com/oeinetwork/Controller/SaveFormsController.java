@@ -39,7 +39,7 @@ public class SaveFormsController extends BaseController {
                     InputStream inputStream = new FileInputStream(dataDir);
                     HWPFDocument document = new HWPFDocument(inputStream);
                     Range range = document.getRange();
-                    IOOperation(JSONUtil.translateJSONintoApplyBean(aList.getActivityData()), document, range, request);
+                    IOOperation((ApplyBean) JSONUtil.translateJsonIntoBean(aList.getActivityData(), ApplyBean.class), document, range, request);
                     inputStream.close();
                 }
                 ZipHelper mHelp = new ZipHelper("/home/Output/apply.tar.gz", "/home/Docs/Word");

@@ -7,5 +7,4 @@
     <bean name="/Admin.jsp/save.action" class="com.oeinetwork.Controller.SaveFormsController"/>
     <bean name="/Admin.jsp/xls.action" class="com.oeinetwork.Controller.GenerateXLSController"/>
     <bean name="/OnlineCompetition.jsp/comp.action" class="com.oeinetwork.Controller.OnlineCompetitionController"/>
-    <bean name="/test.action" class="com.oeinetwork.Controller.TestController"/>
 </beans>
