@@ -1,8 +1,5 @@
 package com.oeinetwork.Utils;
 
-import com.oeinetwork.Database.AdviceBean;
-import com.oeinetwork.Database.ApplyBean;
-import com.oeinetwork.Database.CompeteBean;
 import com.oeinetwork.Models.MixMessage;
 import com.oeinetwork.Models.MixMsg;
 import com.oeinetwork.Models.MixSingleMessage;
